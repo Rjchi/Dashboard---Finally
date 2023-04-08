@@ -38,19 +38,35 @@ const BlogCardHorizontal = ({ data, index }) => {
                 {data.title.length > 100 ? data.tile.slice(0, 99) : data.title}
               </p>
               <div className="lg:absolute lg:top-15">
-                <spam className="hover:text-purple-800 mt-1 font-medium text-sm">
-                  <Link to={`/category/${data.category.slug}`}>
+                {data.status === "published" ? (
+                  <>
+                    <span className="rounded-full p-1 px-2 bg-green-300 text-green-800 mt-1 font-medium text-sm">
+                      Published
+                    </span>{" "}
+                    &middot;
+                  </>
+                ) : (
+                  <>
+                    <span className="rounded-full p-1 px-2 bg-red-300 text-red-700 mt-1 font-medium text-sm">
+                      Draft
+                    </span>{" "}
+                    &middot;
+                  </>
+                )}
+                <span className="hover:text-purple-800 mt-1 font-medium text-sm">
+                  {/* <Link to={`/category/${data.category.slug}`}>
                     {data.category.name}
-                  </Link>
-                </spam>{" "}
+                  </Link> */}
+                  {data.category.name}
+                </span>{" "}
                 &middot;
-                <spam className="mt-1 font-medium text-sm mx-1">
+                <span className="mt-1 font-medium text-sm mx-1">
                   {moment(data.published).format("LL")}
-                </spam>{" "}
+                </span>{" "}
                 &middot;
-                <spam className="mt-1 font-medium text-sm mx-1">
+                <span className="mt-1 font-medium text-sm mx-1">
                   {data.time_red} min read
-                </spam>
+                </span>
                 <p className="mt-4 text-lg font-regular text-gray-800 leading-4">
                   {data.description.length > 150
                     ? data.description.slice(0, 149)
