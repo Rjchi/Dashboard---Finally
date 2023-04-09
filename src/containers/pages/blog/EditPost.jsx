@@ -38,6 +38,7 @@ function EditPost({
   const [updateDescription, setUpdateDescription] = useState(false);
   const [updateContent, setUpdateContent] = useState(false);
   const [content, setContent] = useState("");
+  const [updateTime, setUpdateTime] = useState(false);
   const [updateCategory, setUpdateCategory] = useState(false);
   const [updateThumbnail, setUpdateThumbnail] = useState(false);
 
@@ -46,9 +47,10 @@ function EditPost({
     new_slug: "",
     description: "",
     category: "",
+    time_red: "",
   });
 
-  const { title, new_slug, description, category } = formData;
+  const { title, new_slug, description, category, time_red } = formData;
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -72,6 +74,31 @@ function EditPost({
     setThumbnail(file);
   };
 
+  const resetStates = () => {
+    if (formData.title !== "") {
+      setFormData({
+        title: "",
+      });
+      setUpdateTitle(false);
+    }
+    if (formData.new_slug !== "") {
+      setFormData({
+        new_slug: "",
+      });
+      setUpdateSlug(false);
+    }
+    if (formData.description !== "") {
+      setFormData({
+        description: "",
+      });
+      setUpdateDescription(false);
+    }
+    setUpdateContent(false);
+    setUpdateTime(false);
+    setUpdateCategory(false);
+    setUpdateThumbnail(false);
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
 
@@ -90,6 +117,7 @@ function EditPost({
     formData.append("new_slug", new_slug);
     formData.append("description", description);
     formData.append("category", category);
+    formData.append("time_red", time_red);
     if (thumbnail) {
       formData.append("thumbnail", thumbnail, thumbnail.name);
     } else {
@@ -124,14 +152,10 @@ function EditPost({
             description: "",
             content: "",
             category: "",
+            time_red: "",
           });
           setLoading(false);
-          setUpdateTitle(false);
-          setUpdateSlug(false);
-          setUpdateDescription(false);
-          setUpdateContent(false);
-          setUpdateCategory(false);
-          setUpdateThumbnail(false);
+          resetStates();
           if (thumbnail) {
             setThumbnail(null);
             setPreviewImage(null);
@@ -141,12 +165,7 @@ function EditPost({
           }
         } else {
           setLoading(false);
-          setUpdateTitle(false);
-          setUpdateSlug(false);
-          setUpdateDescription(false);
-          setUpdateContent(false);
-          setUpdateCategory(false);
-          setUpdateThumbnail(false);
+          resetStates();
           if (thumbnail) {
             setThumbnail(null);
             setPreviewImage(null);
@@ -157,12 +176,7 @@ function EditPost({
         }
       } catch (error) {
         setLoading(false);
-        setUpdateTitle(false);
-        setUpdateSlug(false);
-        setUpdateDescription(false);
-        setUpdateContent(false);
-        setUpdateCategory(false);
-        setUpdateThumbnail(false);
+        resetStates();
         if (thumbnail) {
           setThumbnail(null);
           setPreviewImage(null);
@@ -214,12 +228,7 @@ function EditPost({
             category: "",
           });
           setLoading(false);
-          setUpdateTitle(false);
-          setUpdateSlug(false);
-          setUpdateDescription(false);
-          setUpdateContent(false);
-          setUpdateCategory(false);
-          setUpdateThumbnail(false);
+          resetStates();
           if (thumbnail) {
             setThumbnail(null);
             setPreviewImage(null);
@@ -230,12 +239,7 @@ function EditPost({
         } else {
           setOpen(false);
           setLoading(false);
-          setUpdateTitle(false);
-          setUpdateSlug(false);
-          setUpdateDescription(false);
-          setUpdateContent(false);
-          setUpdateCategory(false);
-          setUpdateThumbnail(false);
+          resetStates();
           if (thumbnail) {
             setThumbnail(null);
             setPreviewImage(null);
@@ -247,12 +251,7 @@ function EditPost({
       } catch (error) {
         setOpen(false);
         setLoading(false);
-        setUpdateTitle(false);
-        setUpdateSlug(false);
-        setUpdateDescription(false);
-        setUpdateContent(false);
-        setUpdateCategory(false);
-        setUpdateThumbnail(false);
+        resetStates();
         if (thumbnail) {
           setThumbnail(null);
           setPreviewImage(null);
@@ -304,12 +303,7 @@ function EditPost({
             category: "",
           });
           setLoading(false);
-          setUpdateTitle(false);
-          setUpdateSlug(false);
-          setUpdateDescription(false);
-          setUpdateContent(false);
-          setUpdateCategory(false);
-          setUpdateThumbnail(false);
+          resetStates();
           if (thumbnail) {
             setThumbnail(null);
             setPreviewImage(null);
@@ -320,12 +314,7 @@ function EditPost({
         } else {
           setOpen(false);
           setLoading(false);
-          setUpdateTitle(false);
-          setUpdateSlug(false);
-          setUpdateDescription(false);
-          setUpdateContent(false);
-          setUpdateCategory(false);
-          setUpdateThumbnail(false);
+          resetStates();
           if (thumbnail) {
             setThumbnail(null);
             setPreviewImage(null);
@@ -337,12 +326,7 @@ function EditPost({
       } catch (error) {
         setOpen(false);
         setLoading(false);
-        setUpdateTitle(false);
-        setUpdateSlug(false);
-        setUpdateDescription(false);
-        setUpdateContent(false);
-        setUpdateCategory(false);
-        setUpdateThumbnail(false);
+        resetStates();
         if (thumbnail) {
           setThumbnail(null);
           setPreviewImage(null);
@@ -383,12 +367,7 @@ function EditPost({
         } else {
           setOpen(false);
           setLoading(false);
-          setUpdateTitle(false);
-          setUpdateSlug(false);
-          setUpdateDescription(false);
-          setUpdateContent(false);
-          setUpdateCategory(false);
-          setUpdateThumbnail(false);
+          resetStates();
           if (thumbnail) {
             setThumbnail(null);
             setPreviewImage(null);
@@ -400,12 +379,7 @@ function EditPost({
       } catch (error) {
         setOpen(false);
         setLoading(false);
-        setUpdateTitle(false);
-        setUpdateSlug(false);
-        setUpdateDescription(false);
-        setUpdateContent(false);
-        setUpdateCategory(false);
-        setUpdateThumbnail(false);
+        resetStates();
         if (thumbnail) {
           setThumbnail(null);
           setPreviewImage(null);
@@ -460,7 +434,9 @@ function EditPost({
                 <h3 className="text-3xl font-medium leading-6 text-gray-900">
                   Edit Post
                 </h3>
-                <p className="mt-4 text-lg text-gray-800">{post.title}.</p>
+                <p className="mt-4 text-lg text-gray-800">
+                  {post.title ? <>{post.title}</> : <>...</>}
+                </p>
               </div>
               <div className="ml-4 mt-4 flex-shrink-0">
                 <button
@@ -633,11 +609,13 @@ function EditPost({
                   ) : (
                     <>
                       <span className="flex-grow">
-                        <img
-                          src={post.thumbnail}
-                          alt="IMG"
-                          className="object-cover w-full h-60 border border-gray-600"
-                        />
+                        {post.thumbnail && (
+                          <img
+                            src={post.thumbnail}
+                            alt="IMG"
+                            className="object-cover w-full h-60 border border-gray-600"
+                          />
+                        )}
                       </span>
                       <span className="ml-4 flex-shrink-0">
                         <div
@@ -739,46 +717,105 @@ function EditPost({
                   ) : (
                     <>
                       <span className="flex-grow">
-                        <div className="prose prose-lg max-w-4xl prose-indigo mx-auto mt-6 text-gray-700">
-                          {showFullContent ? (
-                            <p
-                              dangerouslySetInnerHTML={{
-                                __html: DOMPurify.sanitize(post.content),
-                              }}
-                            />
-                          ) : (
-                            <p
-                              dangerouslySetInnerHTML={{
-                                __html:
-                                  DOMPurify.sanitize(post.content.length) > 350
-                                    ? DOMPurify.sanitize(
-                                        post.content.slice(0, 249)
-                                      )
-                                    : DOMPurify.sanitize(post.content),
-                              }}
-                            />
-                          )}
-                          {showFullContent ? (
-                            <button
-                              className="relative inline-flex items-center mx-1 rounded-md border border-transparent bg-purple-700 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-950 focus:outline-none focus:ring-2 focus:ring-purple-800 focus:ring-offset-2"
-                              onClick={() => setShowFullContent(false)}
-                            >
-                              Show Less
-                            </button>
-                          ) : (
-                            <button
-                              className="relative inline-flex items-center mx-1 rounded-md border border-transparent bg-purple-700 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-950 focus:outline-none focus:ring-2 focus:ring-purple-800 focus:ring-offset-2"
-                              onClick={() => setShowFullContent(true)}
-                            >
-                              Show More
-                            </button>
-                          )}
-                        </div>
+                        {post.content ? (
+                          <div className="prose prose-lg max-w-4xl prose-indigo mx-auto mt-6 text-gray-700">
+                            {showFullContent ? (
+                              <p
+                                dangerouslySetInnerHTML={{
+                                  __html: DOMPurify.sanitize(post.content),
+                                }}
+                              />
+                            ) : (
+                              <p
+                                dangerouslySetInnerHTML={{
+                                  __html:
+                                    DOMPurify.sanitize(post.content.length) >
+                                    350
+                                      ? DOMPurify.sanitize(
+                                          post.content.slice(0, 249)
+                                        )
+                                      : DOMPurify.sanitize(post.content),
+                                }}
+                              />
+                            )}
+                            {DOMPurify.sanitize(post.content.length) > 350 ? (
+                              <>
+                                {showFullContent ? (
+                                  <button
+                                    className="relative inline-flex items-center mx-1 rounded-md border border-transparent bg-purple-700 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-950 focus:outline-none focus:ring-2 focus:ring-purple-800 focus:ring-offset-2"
+                                    onClick={() => setShowFullContent(false)}
+                                  >
+                                    Show Less
+                                  </button>
+                                ) : (
+                                  <button
+                                    className="relative inline-flex items-center mx-1 rounded-md border border-transparent bg-purple-700 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-950 focus:outline-none focus:ring-2 focus:ring-purple-800 focus:ring-offset-2"
+                                    onClick={() => setShowFullContent(true)}
+                                  >
+                                    Show More
+                                  </button>
+                                )}
+                              </>
+                            ) : (
+                              <></>
+                            )}
+                          </div>
+                        ) : (
+                          <p className="animate-pulse w-72 h-9 rounded-md py-2 bg-gray-300 mt-4 text-lg font-regular text-gray-800 leading-4"></p>
+                        )}
                       </span>
                       <span className="ml-4 flex-shrink-0">
                         <div
                           type="button"
                           onClick={() => setUpdateContent(true)}
+                          className="cursor-pointer inline-flex rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500inline-flex "
+                        >
+                          Update
+                        </div>
+                      </span>
+                    </>
+                  )}
+                </dd>
+              </div>
+
+              <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
+                <dt className="text-sm font-medium text-gray-500">Time Read</dt>
+                <dd className="mt-1 flex text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                  {updateTime ? (
+                    <form onSubmit={(e) => onSubmit(e)} className="flex w-full">
+                      <span className="flex-grow">
+                        <input
+                          value={time_red}
+                          onChange={(e) => onChange(e)}
+                          name="time_red"
+                          type="number"
+                          required
+                          className="border border-gray-400 rounded-lg w-full"
+                        />
+                      </span>
+                      <span className="ml-4 flex-shrink-0">
+                        <button
+                          type="submit"
+                          className="rounded-md mr-3 bg-white font-medium text-indigo-600 hover:text-purple-800"
+                        >
+                          Save
+                        </button>
+                        <div
+                          type="button"
+                          onClick={() => setUpdateTime(false)}
+                          className="cursor-pointer inline-flex rounded-md bg-white font-medium text-indigo-600 hover:text-purple-800"
+                        >
+                          Cancel
+                        </div>
+                      </span>
+                    </form>
+                  ) : (
+                    <>
+                      <span className="flex-grow">{post.time_red}</span>
+                      <span className="ml-4 flex-shrink-0">
+                        <div
+                          type="button"
+                          onClick={() => setUpdateTime(true)}
                           className="cursor-pointer inline-flex rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500inline-flex "
                         >
                           Update
@@ -880,7 +917,13 @@ function EditPost({
                     </form>
                   ) : (
                     <>
-                      <span className="flex-grow">{post.category.name}</span>
+                      <span className="flex-grow">
+                        {post.category ? (
+                          <>{post.category.name}</>
+                        ) : (
+                          <p className="animate-pulse w-72 h-9 rounded-md py-2 bg-gray-300 mt-4 text-lg font-regular text-gray-800 leading-4"></p>
+                        )}
+                      </span>
                       <span className="ml-4 flex-shrink-0">
                         <div
                           type="button"
@@ -1051,11 +1094,8 @@ function EditPost({
                           </div>
                         </div>
                       </div>
-                      {post.title &&
-                        post.description &&
-                        post.slug &&
-                        post.content &&
-                        post.category && (
+                      {
+                        post.slug && (
                           <>
                             <form
                               onSubmit={(e) => onSubmitDelete(e)}

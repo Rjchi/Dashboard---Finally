@@ -8,6 +8,7 @@ import {
   get_author_blog_list_page,
 } from "../../../redux/actions/blog/blog";
 import BlogList from "../../../components/blog/BlogList";
+import axios from "axios";
 
 function Blog({
   get_author_blog_list,
@@ -70,7 +71,36 @@ function Blog({
           </div>
           <div className="ml-4 mt-4 flex-shrink-0">
             <button
-              type="button"
+              onClick={() => {
+                const config = {
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: `JWT ${localStorage.getItem("access")}`,
+                  },
+                };
+
+                const body = JSON.stringify({
+
+                })
+
+                const fetchData = async () => {
+                  try {
+                    const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/blog/create`,
+                    body,
+                    config)
+
+                    if (res.status === 200) {
+                      get_author_blog_list()
+                    } else {
+                      
+                    }
+                  } catch (error) {
+                    alert("Error al crear post")
+                  }
+                }
+                fetchData()
+              }}
               className="relative inline-flex items-center rounded-md border border-transparent bg-purple-800 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-900 focus:outline-none focus:ring-2 focus:ring-purple-700 focus:ring-offset-2"
             >
               Create New Post
