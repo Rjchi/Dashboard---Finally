@@ -65,4 +65,29 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-Back end (Email)
+Back end (Email = Agencia(email - Page) + dashboard(Dashboard--Finally))
+
+core/.env = (
+SECRET_KEY='pd45@@hw2y4te2#1y8c99-_8$e(6s9^gv23a8-frt0euu)+k(m'
+DEBUG=True
+
+DOMAIN='localhost:3000'
+
+DATABASE_URL=''
+
+ALLOWED_HOSTS_DEV='*'
+ALLOWED_HOSTS_DEPLOY='otro.com', 'www.otro.com'
+
+CORS_ORIGIN_WHITELIST_DEV=http://localhost:3000,http://localhost:3001
+CORS_ORIGIN_WHITELIST_DEPLOY='https://otro.com'
+
+CSRF_TRUSTED_ORIGINS_DEV=http://localhost:3000,http://localhost:3001
+CSRF_TRUSTED_ORIGINS_DEPLOY='https://otro.com'
+
+ACTIVE_CAMPAIGN_KEY='48aaf515c56a25b6a0bd78a1ffec20125ff8b410f046becef3034ecd4514614adaeaa789'
+ACTIVE_CAMPAIGN_URL='https://richardospina18.api-us1.com'
+)
+
+Email/Agencia = (
+REACT_APP_API_URL='http://127.0.0.1:8000'
+)
