@@ -69,6 +69,7 @@ Back end (Email = Agencia(email - Page) + dashboard(Dashboard--Finally))
 
 core/.env = (
 SECRET_KEY='pd45@@hw2y4te2#1y8c99-_8$e(6s9^gv23a8-frt0euu)+k(m'
+
 DEBUG=True
 
 DOMAIN='localhost:3000'
