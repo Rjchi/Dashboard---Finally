@@ -65,7 +65,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-Back end (Email = Agencia(email-page) + dashboard(dashboard-finally))
+Backend (Email = Agencia(email-page) + dashboard(dashboard-finally))
 
 core/.env = (
 SECRET_KEY='pd45@@hw2y4te2#1y8c99-_8$e(6s9^gv23a8-frt0euu)+k(m'
